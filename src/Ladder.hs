@@ -1,7 +1,7 @@
 module Ladder
   ( Dictionary,
-    mkLadderGraph,
     readDictionary,
+    ladderSolve,
   )
 where
 
@@ -10,6 +10,11 @@ import qualified Graph as G
 import qualified PermutationMap as PM
 
 type Dictionary = [String]
+
+ladderSolve :: Dictionary -> String -> String -> Maybe [String]
+ladderSolve dict start end =
+  let g = mkLadderGraph dict
+   in G.bfsSearch g start end
 
 readDictionary :: FilePath -> IO Dictionary
 readDictionary filepath = do

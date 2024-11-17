@@ -43,8 +43,8 @@ lookup :: String -> PermutationMap -> Maybe [String]
 lookup key = M.lookup (L.sort key)
 
 findWithDefault :: [String] -> String -> PermutationMap -> [String]
-findWithDefault defaultValue key map =
-  fromMaybe defaultValue (PermutationMap.lookup key map)
+findWithDefault defaultValue key map' =
+  fromMaybe defaultValue (PermutationMap.lookup key map')
 
 createPermutationMap :: [String] -> PermutationMap
 createPermutationMap = go empty
@@ -55,4 +55,4 @@ createPermutationMap = go empty
     insertPermutation word = alter (insertList word) word
 
     insertList word Nothing = Just [word]
-    insertList word (Just words) = Just (word : words)
+    insertList word (Just words') = Just (word : words')
